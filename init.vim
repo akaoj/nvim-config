@@ -61,6 +61,9 @@ autocmd VimEnter,WinEnter * call matchadd('NonBreakingSpaces', ' ', 3)
 autocmd VimEnter,WinEnter * highlight NonIndentationTabs ctermbg=red guibg=red
 autocmd VimEnter,WinEnter * call matchadd('NonIndentationTabs', '\([^\t]\)\@<=\t\+', 4)
 
+" Make Editorconfig skip git commits
+autocmd FileType gitcommit let b:EditorConfig_disable = 1
+
 " Use Python 3 for flake8 and pylint
 "let g:ale_python_flake8_executable = 'python3'
 "let g:ale_python_flake8_options = '-m flake8'
