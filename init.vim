@@ -11,7 +11,6 @@ set tabstop=4     " Display a tab as 4 spaces wide
 set nosmartindent
 set hidden  " allows us to change buffer even if current one is not saved
 
-set nocompatible
 set number
 set mouse=a
 
@@ -19,14 +18,7 @@ set mouse=a
 set ignorecase
 set smartcase
 
-set foldmethod=indent
-set foldlevel=99
-
-" Display a vertical line at 120 chars (this might change depending on the current file)
-set colorcolumn=121
-
 set linebreak  " do not split words over 2 lines
-"set breakindent  " set the same indentation to the broke line than the original one
 set breakindentopt=shift:1  " add a space before the continuation line (makes distinction easier)
 
 " Colors in the terminal will be the same as in GUI
@@ -64,33 +56,17 @@ autocmd VimEnter,WinEnter * call matchadd('NonIndentationTabs', '\([^\t]\)\@<=\t
 " Make Editorconfig skip git commits
 autocmd FileType gitcommit let b:EditorConfig_disable = 1
 
-" Use Python 3 for flake8 and pylint
-"let g:ale_python_flake8_executable = 'python3'
-"let g:ale_python_flake8_options = '-m flake8'
-let g:ale_python_pylint_executable = 'pylint-3'
-
-" Disable import errors with Pylint (most of the time software is running in containers)
-let g:ale_python_pylint_options = '--disable E0401'
-
 let g:airline_theme='dark'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 
 colorscheme solarized
 
-" Run FZF when calling `:f` (needs FZF to be installed)
-cabbrev f FZF
+" Custom mappings for fzf.vim
+nmap <Leader>b :Buffers<CR>
+nmap <Leader>f :Files<CR>
 
-" Do not use arrow keys to navigate in the autocomplete menu (use <C-p> and <C-n> as it's supposed to)
-let g:ycm_key_list_select_completion = ['<C-n>']
-let g:ycm_key_list_previous_completion = ['<C-p>']
-let g:ycm_key_list_stop_completion = ['<Up>', '<Down>']
+" Don't automatically add auto-wrap
+let g:EditorConfig_preserve_formatoptions = 1
 
-let g:UltiSnipsExpandTrigger = "<S-Tab>"
-let g:UltiSnipsJumpForwardTrigger = "<C-n>"
-let g:UltiSnipsJumpBackwardTrigger = "<C-p>"
-
-let g:gutentags_cache_dir = "~/.config/nvim/tags"
-let g:gutentags_exclude_filetypes = ["gitcommit"]  " prevent error when commiting with vim/neovim
-
-lua require'colorizer'.setup()
+lua require('init')
