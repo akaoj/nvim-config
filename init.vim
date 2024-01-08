@@ -17,6 +17,7 @@ set mouse=a
 " Smart search
 set ignorecase
 set smartcase
+set wildignorecase
 
 set linebreak  " do not split words over 2 lines
 set breakindentopt=shift:1  " add a space before the continuation line (makes distinction easier)
